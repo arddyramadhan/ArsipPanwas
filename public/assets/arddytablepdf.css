@@ -1,0 +1,78 @@
+.title {
+    font-family: "Sans-Serif", serif;
+}
+
+* {
+    font-family: "Calibri";
+    font-size: 17px;
+}
+
+table {
+    color: #232323;
+    border-collapse: collapse;
+}
+
+.all {
+    border-top: 1px solid #232323;
+    border-bottom: 1px solid #232323;
+    border-left: 1px solid #232323;
+    border-right: 1px solid #232323;
+}
+
+.top {
+    border-top: 1px solid #232323;
+}
+
+.ntop {
+    border-top: 0px;
+    border-bottom: 1px solid #232323;
+    border-left: 1px solid #232323;
+    border-right: 1px solid #232323;
+}
+
+.right {
+    border-right: 1px solid #232323;
+}
+
+.nright {
+    border-top: 1px solid #232323;
+    border-bottom: 1px solid #232323;
+    border-left: 1px solid #232323;
+    border-right: 0px;
+}
+
+.bottom {
+    border-bottom: 1px solid #232323;
+}
+
+.nbottom {
+    border-top: 1px solid #232323;
+    border-bottom: 0px;
+    border-left: 1px solid #232323;
+    border-right: 1px solid #232323;
+}
+
+.left {
+    border-left: 1px solid #232323;
+}
+
+.nleft {
+    border-top: 1px solid #232323;
+    border-bottom: 1px solid #232323;
+    border-left: 0px;
+    border-right: 1px solid #232323;
+}
+
+.y {
+    border-top: 0px;
+    border-bottom: 0px;
+    border-right: 1px solid #232323;
+    border-left: 1px solid #232323;
+}
+
+.x {
+    border-top: 1px solid #232323;
+    border-bottom: 1px solid #232323;
+    border-left: 0px;
+    border-right: 0px;
+}
