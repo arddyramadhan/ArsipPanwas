@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jenis;
 use App\Models\Jurusan;
 use App\Models\Pegawai;
 use App\Models\Program_studi;
@@ -11,23 +12,30 @@ use Illuminate\Support\Facades\Hash;
 
 class PegawaiController extends Controller
 {
+    private $nav_jenis;
+    public function __construct()
+    {
+        $this->nav_jenis = Jenis::get();
+    }
     public function index()
     {
-        $data = Pegawai::orderBy('jurusan_id', 'asc')->get();
-        $jurusan = Jurusan::get();
-        return view('pegawai.index', compact('data', 'jurusan'));
+        $nav_jenis = $this->nav_jenis;
+        $data = Pegawai::get();
+        return view('pegawai.index', compact('nav_jenis','data'));
     }
 
     public function jabatan()
     {
         $data = Pegawai::orderBy('created')->get();
         $jurusan = Jurusan::get();
-        return view('jabatan.index', compact('data', 'jurusan'));
+        $nav_jenis = $this->nav_jenis;
+        return view('jabatan.index', compact('nav_jenis','data', 'jurusan'));
     }
 
     public function show(Pegawai $pegawai)
     {
-        return view('pegawai.show', compact('pegawai'));
+        $nav_jenis = $this->nav_jenis;
+        return view('pegawai.show', compact('nav_jenis','pegawai'));
     }
     public function delete(Pegawai $pegawai)
     {

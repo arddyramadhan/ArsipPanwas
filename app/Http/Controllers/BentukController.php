@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bentuk;
+use App\Models\Jenis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BentukController extends Controller
 {
+    public function __construct()
+    {
+        $nav_jenis = Jenis::get();
+    }
+    
     public function store(Request $request)
     {
         $data = $request->validate([

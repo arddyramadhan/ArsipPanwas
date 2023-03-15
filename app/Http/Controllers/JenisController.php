@@ -8,29 +8,36 @@ use Illuminate\Support\Facades\Auth;
 
 class JenisController extends Controller
 {
+    private $nav_jenis;
+    public function __construct()
+    {
+        $this->nav_jenis = Jenis::get();
+    }
     public function index()
     {
-        // if (Auth::user()->pegawai->status == 'operator') {
-        //     $data = Rumpun::with('jurusan')->where('jurusan_id', Auth::user()->pegawai->jurusan_id)->get();
-        // } else {
-        //     $data = Rumpun::with('jurusan')->get();
-        // }
+        $nav_jenis = $this->nav_jenis;
         $data = Jenis::get();
-        return view('jenis.index', compact('data'));
+        return view('jenis.index', compact('nav_jenis','data'));
     }
-    
+
+    public function Byjenis()
+    {
+        $data = Jenis::get();
+        $nav_jenis = $this->nav_jenis;
+        return view('jenis.index', compact('nav_jenis','data'));
+    }
     public function show(Jenis $jenis)
     {
-        return view('jenis.show', compact('jenis'));
+        $nav_jenis = $this->nav_jenis;
+        return view('jenis.show', compact('nav_jenis','jenis'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
             'nama' => 'required',
-            // 'jurusan_id'=> 'required',
+            'inputan' => 'required',
         ]);
-        // $data['jurusan_id'] = $request->jurusan_id ?? Auth::user()->pegawai->jurusan_id;
         Jenis::create($data);
         return back();
     }
@@ -44,6 +51,7 @@ class JenisController extends Controller
     {
         $jenis->update([
             'nama' => $request->nama,
+            'inputan' => $request->inputan,
         ]);
         return back();
     }

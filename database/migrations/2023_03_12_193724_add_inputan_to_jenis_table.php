@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cpmk', function (Blueprint $table) {
-            $table->id();
-            $table->text('deskripsi')->nullable();
-            $table->text('sub_deskripsi')->nullable();
-            $table->foreignId('matakuliah_id')->constrained('matakuliah');
-            $table->integer('urutan')->nullable()->default(0);
-            $table->timestamps();
+        Schema::table('jenis', function (Blueprint $table) {
+            $table->enum('inputan', ['operator', 'individu'])->nullable()->default('operator')->after('nama');
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cpmk');
+        Schema::table('jenis', function (Blueprint $table) {
+            $table->dropColumn('inputan');
+        });
     }
 };

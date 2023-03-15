@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('profil_jurusan_capaian', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('profil_jurusan_id')->constrained('profil_jurusan');
-            $table->foreignId('capaian_lulusan_id')->constrained('capaian_lulusan');
+        Schema::table('pegawai', function (Blueprint $table) {
+            $table->enum('jabatan', ['ketua', 'sekretaris', 'staf'])->nullable()->default('staf')->after('hp');
         });
     }
 
@@ -27,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profil_jurusan_capaian');
+        Schema::table('pegawai', function (Blueprint $table) {
+            $table->dropColumn('jabatan');
+        });
     }
 };

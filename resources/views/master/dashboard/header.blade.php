@@ -4,10 +4,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pt-2 pe-md-3">
-            <a href=".">
+            <a href="#">
                 <img src="{{ asset('./static/logo.png') }}" width="110" height="32" alt="Elektronik LHP" class="navbar-brand-image">
             </a>
-
             <span class="mx-2">
                 E-Arsip | Kabila Bone
             </span>

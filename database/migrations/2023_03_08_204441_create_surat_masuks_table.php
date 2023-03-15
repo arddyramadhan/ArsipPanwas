@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('profil_jurusan', function (Blueprint $table) {
+        Schema::create('surat_masuk', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->nullable();
+            $table->string('nomor')->nullable();
+            $table->date('tgl_surat')->nullable();
+            $table->string('asal')->nullable();
             $table->text('deskripsi')->nullable();
-            $table->string('urutan')->nullable()->default(1);
-            $table->foreignId('jurusan_id')->constrained('jurusan');
+            $table->text('file')->nullable();
+            $table->foreignId('pegawai_id')->constrained('pegawai');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profil_jurusan');
+        Schema::dropIfExists('surat_masuk');
     }
 };

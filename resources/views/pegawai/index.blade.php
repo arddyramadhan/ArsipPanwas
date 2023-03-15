@@ -12,7 +12,7 @@ $base = 'pegawai'
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
                 </path>
             </svg>
-            Dosen
+            Pengguna
         </button>
         <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#operator">
             <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -32,10 +32,9 @@ $base = 'pegawai'
                         <tr>
                             <th class="border-0 rounded-start">#</th>
                             <th class="border-0">Nama</th>
-                            <th class="border-0">NIP</th>
-                            <th class="border-0">Jurusan</th>
-                            {{-- <th class="border-0">Jenis Kelamin</th> --}}
-                            {{-- <th class="border-0">Telp</th> --}}
+                            <th class="border-0">Jenis Kelamin</th>
+                            <th class="border-0">Telp</th>
+                            <th class="border-0">Alamat</th>
                             <th class="border-0">Akses</th>
                             <th class="border-0 text-center">Aksi</th>
                         </tr>
@@ -45,19 +44,15 @@ $base = 'pegawai'
                         <tr>
                             <td valign="middle">{{ ++$no }}</td>
                             <td valign="middle">{{ $item->nama }}</td>
-                            <td valign="middle">{{ $item->nip }}</td>
-                            <td valign="middle">{{ $item->jurusan->nama }}</td>
-                            {{-- <td valign="middle">{{ $item->jk == 'P' ? 'Perempuan' : 'Laki-laki'}}</td> --}}
-                            {{-- <td valign="middle">{{ $item->hp }}</td> --}}
+                            <td valign="middle">{{ $item->jk == 'P' ? 'Perempuan' : 'Laki-laki'}}</td>
+                            <td valign="middle">{{ $item->hp }}</td>
+                            <td valign="middle">{{ $item->alamat }}</td>
                             <td valign="middle">
-                                @if ($item->status == 'dosen')
-                                <span class="badge badge-sm bg-success">Dosen</span>
+                                @if ($item->user->hasRole('pengguna'))
+                                <span class="badge badge-sm bg-success">Pengguna</span>
+                                @endif
                                 @if ($item->user->hasRole('operator'))
                                 <span class="badge badge-sm bg-primary">Operator</span>
-                                @endif
-                                @endif
-                                @if ($item->status == 'operator')
-                                <span class="badge badge-sm bg-primary">Operator ({{ $item->jurusan->nama }}) </span>
                                 @endif
                             </td>
                             <td valign="middle" align="center">
@@ -116,7 +111,7 @@ $base = 'pegawai'
             </div>
         </div>
     </div>
-    @include('pegawai.modal')
+    {{-- @include('pegawai.modal') --}}
 </div>
 @include('datatable')
 @endsection

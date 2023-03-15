@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Kabupaten;
 use App\Models\Kabupaten_officer;
+use App\Models\Pegawai;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -61,7 +62,7 @@ class DatabaseSeeder extends Seeder
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'admin']);
         $role2 = Role::create(['name' => 'operator']);
-        $role3 = Role::create(['name' => 'dosen']);
+        $role3 = Role::create(['name' => 'pengguna']);
 
         // create demo users
         $user = User::create([
@@ -74,10 +75,46 @@ class DatabaseSeeder extends Seeder
         $user2 = User::create([
             'email' => 'arddy@app.id',
             'username' => 'arddy',
-            'password' => Hash::make('password')
+            'password' => Hash::make('111')
         ]);
         $user2->assignRole($role2);
-
+        Pegawai::create([
+            'nama' => 'Sukardi Ramadhan Dali',
+            'jk' => 'L',
+            'tempat_lahir' => 'Gorontalo',
+            'alamat' => 'jl poigar',
+            'alamat' => 'jl poigar',
+            'hp' => '085172345633',
+            'user_id' => $user2->id,
+        ]);
+        $user4 = User::create([
+            'email' => 'lusi@app.id',
+            'username' => 'lusi',
+            'password' => Hash::make('111')
+        ]);
+        $user4->assignRole($role2);
+        Pegawai::create([
+            'nama' => 'Lusi Abdilani Makalalag',
+            'jk' => 'P',
+            'tempat_lahir' => 'Kota mobagu',
+            'alamat' => 'unknown',
+            'hp' => '085172345622',
+            'user_id' => $user4->id,
+        ]);
+        $user3 = User::create([
+            'email' => 'agung@app.id',
+            'username' => 'agung',
+            'password' => Hash::make('111')
+        ]);
+        $user3->assignRole($role3);
+        Pegawai::create([
+            'nama' => 'Agung Wahyu Laksono',
+            'jk' => 'L',
+            'tempat_lahir' => 'Gorut',
+            'alamat' => 'unknown',
+            'hp' => '085172345622',
+            'user_id' => $user3->id,
+        ]);
         //  $user2 = User::create([
         //     'fullname' => 'Lusi Abdilani Makalalag',
         //     'email' => 'lusi@app.id',
