@@ -136,6 +136,14 @@ $base = 'jenis'
                             <label for="" class="lable">Nama Jenis</label>
                             <input type="text" name="nama" id="" value="{{ $edit->nama ?? old('nama')}}" class="form-control">
                         </div>
+                        <div class="mb-2">
+                            <label for="" class="lable">Status Inputan</label>
+                            <select name="inputan" class="form-control" id="">
+                                <option {{ $edit->nama=='operator' ? 'selected' : '' }} value="operator">Operator</option>
+                                <option {{ $edit->nama=='individu' ? 'selected' : '' }} value="individu">Individu</option>
+
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-sm btn-primary">Simpan</button>

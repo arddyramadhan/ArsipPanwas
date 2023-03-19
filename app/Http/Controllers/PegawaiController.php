@@ -150,28 +150,32 @@ class PegawaiController extends Controller
         return back();
     }
 
-    public function storeOperator(Request $request)
+    public function user(Request $request)
     {
         // return $request->jurusan_id;
         $data = $request->validate([
             'nama' => 'required',
             'jk' => 'required',
-            'nip' => 'required',
-            'nidn' => 'required',
-            'tgl_lahir' => 'required',
             'tempat_lahir' => 'required',
-            'pendidikan' => 'required',
             'alamat' => 'required',
             'hp' => 'required',
-            'jurusan_id' => 'required',
+            'jabatan' => 'required',
         ]);
-        $data['status'] = 'operator';
+        $request->validate([
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
         $user = User::create([
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        $user->assignRole('operator');
+        if ($request->akses == 'operator') {
+            $user->assignRole('operator');
+        } else {
+            $user->assignRole('pengguna');
+        }
         if ($request->foto) {
             $getphoto = $request->foto;
             $imageName = rand() . '.' . $getphoto->getClientOriginalExtension();

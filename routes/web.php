@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function () {
         Route::get('', [PegawaiController::class, 'index']);
         Route::post('/store', [PegawaiController::class, 'store']);
         Route::post('/storeDosen', [PegawaiController::class, 'storeDosen']);
-        Route::post('/storeOperator', [PegawaiController::class, 'storeOperator']);
+        Route::post('/user', [PegawaiController::class, 'user']);
         Route::patch('/{pegawai}/update', [PegawaiController::class, 'update']);
         Route::get('/{pegawai}/ubahRole', [PegawaiController::class, 'ubahRole']);
         Route::get('/{pegawai}/reset', [PegawaiController::class, 'resetPassword']);
@@ -81,6 +81,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [SuratKeluarController::class, 'store']);
         Route::patch('/{surat_keluar}/update', [SuratKeluarController::class, 'update']);
         Route::delete('/{surat_keluar}/delete', [SuratKeluarController::class, 'delete']);
+        Route::get('/{surat_keluar}/print', [SuratKeluarController::class, 'print']);
         Route::get('/{surat_keluar}', [SuratKeluarController::class, 'show']);
     });
 

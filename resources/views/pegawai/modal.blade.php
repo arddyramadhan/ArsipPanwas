@@ -1,107 +1,9 @@
-<div class="modal fade" id="dosen" tabindex="-1" role="dialog" aria-labelledby="modalTitleNotify" aria-hidden="true">
+<div class="modal fade" id="user" tabindex="-1" role="dialog" aria-labelledby="modalTitleNotify" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form action="{{ url('/'.$base.'/storeDosen') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('/'.$base.'/user') }}" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <p class="modal-title" id="modalTitleNotify">Tambah data Dosen</p>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    {{-- @csrf
-                    <div class="mb-2">
-                        <label for="" class="lable">Nama</label>
-                        <input type="text" name="nama" required id="" class="form-control">
-                    </div>
-                    <div class="mb-2">
-                        <label for="" class="lable">NIP</label>
-                        <input type="text" name="nip" required id="" class="form-control">
-                    </div>
-                    <div class="mb-2">
-                        <label for="" class="lable">NIDN</label>
-                        <input type="text" name="nidn" required id="" class="form-control">
-                    </div>
-                    <div class="mb-2">
-                        <label for="" class="lable">Jenis Kelamin</label>
-                        <select name="jk" id="" class="form-control">
-                            <option value="" disabled selected>Pilih satu.!</option>
-                            <option value="L">Laki-laki</option>
-                            <option value="P">Perempuan</option>
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="" class="lable">Alamat</label>
-                        <input type="text" name="alamat" required id="" class="form-control">
-                    </div>
-                    <div class="mb-2">
-                        <label for="" class="lable">Tanggal lahir</label>
-                        <input type="date" name="tgl_lahir" value="{{ date('Y-m-d') }}" required id="" class="form-control">
-                </div>
-                <div class="mb-2">
-                    <label for="" class="lable">Tempat lahir</label>
-                    <input type="text" name="tempat_lahir" required id="" class="form-control">
-                </div>
-                <div class="mb-2">
-                    <label for="" class="lable">Pendidikan</label>
-                    <input type="text" name="pendidikan" required id="" class="form-control">
-                </div>
-                <div class="mb-2">
-                    <label for="" class="lable">Email</label>
-                    <input type="email" name="email" required id="" class="form-control">
-                </div>
-                <div class="mb-2">
-                    <label for="" class="lable">Telp</label>
-                    <input type="text" name="hp" required id="" class="form-control">
-                </div>
-                <div class="mb-2">
-                    <label for="" class="lable">Akses</label>
-                    <select name="akses" id="" class="form-control">
-                        <option value="" disabled selected>Pilih satu.!</option>
-                        <option value="dosen">Hanya Dosen</option>
-                        <option value="dosen_operator">Dosen + Operator</option>
-                    </select>
-                </div>
-                <div class="mb-2">
-                    <label for="" class="lable">Jurusan</label>
-                    <select name="jurusan_id" id="" class="form-control" required>
-                        <option value="" disabled selected>Pilih satu.!</option>
-                        @forelse ($jurusan as $item)
-                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                        @empty
-                        @endforelse
-                    </select>
-                </div>
-                <div class="mb-2">
-                    <label for="" class="lable">Username</label>
-                    <input type="text" name="username" id="" class="form-control">
-                    <span class="text-success" style="font-size: 13px">kosongkan apabila ingin menggunakan NIP sebagai akses Masuk</span>
-                </div>
-                <div class="mb-2">
-                    <label for="" class="lable">Password</label>
-                    <input type="password" name="password" id="" class="form-control">
-                    <span class="text-success" style="font-size: 13px">kosongkan apabila ingin menggunakan NIP sebagai akses Masuk</span>
-                </div>
-                <div class="mb-2">
-                    <label for="" class="lable">Foto</label>
-                    <input type="file" name="foto" required id="" class="form-control">
-                </div> --}}
-                <center>
-                    <h3>Untuk menambahkan data dosen harus melalui menu Sinkronisasi Dosen...!!</h3>
-                </center>
-        </div>
-        <div class="modal-footer">
-            {{-- <button type="submit" class="btn  btn-primary">Simpan</button> --}}
-        </div>
-        </form>
-    </div>
-</div>
-</div>
-
-<div class="modal fade" id="operator" tabindex="-1" role="dialog" aria-labelledby="modalTitleNotify" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <form action="{{ url('/'.$base.'/storeOperator') }}" method="POST" enctype="multipart/form-data">
-                <div class="modal-header">
-                    <p class="modal-title" id="modalTitleNotify">Tambah data Operator</p>
+                    <p class="modal-title" id="modalTitleNotify">Tambah data Pengguna</p>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -111,12 +13,13 @@
                         <input type="text" name="nama" required id="" class="form-control">
                     </div>
                     <div class="mb-2">
-                        <label for="" class="lable">NIP</label>
-                        <input type="text" name="nip" id="" required class="form-control">
-                    </div>
-                    <div class="mb-2">
-                        <label for="" class="lable">NIDN</label>
-                        <input type="text" name="nidn" id="" required class="form-control">
+                        <label for="" class="lable">Jabatan</label>
+                        <select name="jabatan" id="" class="form-control" required>
+                            <option value="" disabled selected>Pilih satu.!</option>
+                            <option value="ketua">Ketua</option>
+                            <option value="sekretaris">Sekretaris</option>
+                            <option value="staf">Staf</option>
+                        </select>
                     </div>
                     <div class="mb-2">
                         <label for="" class="lable">Jenis Kelamin</label>
@@ -127,20 +30,12 @@
                         </select>
                     </div>
                     <div class="mb-2">
-                        <label for="" class="lable">Alamat</label>
-                        <input type="text" name="alamat" required id="" class="form-control">
-                    </div>
-                    <div class="mb-2">
-                        <label for="" class="lable">Tanggal lahir</label>
-                        <input type="date" name="tgl_lahir" required value="{{ date('Y-m-d') }}" id="" class="form-control">
-                    </div>
-                    <div class="mb-2">
                         <label for="" class="lable">Tempat lahir</label>
                         <input type="text" name="tempat_lahir" required id="" class="form-control">
                     </div>
                     <div class="mb-2">
-                        <label for="" class="lable">Pendidikan</label>
-                        <input type="text" name="pendidikan" required id="" class="form-control">
+                        <label for="" class="lable">Alamat</label>
+                        <input type="text" name="alamat" required id="" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="" class="lable">Telp</label>
@@ -159,13 +54,11 @@
                         <input type="password" name="password" required id="" class="form-control">
                     </div>
                     <div class="mb-2">
-                        <label for="" class="lable">Jurusan</label>
-                        <select name="jurusan_id" id="" class="form-control" required>
+                        <label for="" class="lable">Akses</label>
+                        <select name="akses" id="" class="form-control" required>
                             <option value="" disabled selected>Pilih satu.!</option>
-                            @forelse ($jurusan as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                            @empty
-                            @endforelse
+                            <option value="operator">Operator</option>
+                            <option value="pengguna">Pengguna</option>
                         </select>
                     </div>
                     <div class="mb-2">
@@ -183,7 +76,7 @@
 
 
 {{-- ! Lihat --}}
-@forelse($data as $lihat)
+{{-- @forelse($data as $lihat)
 <div class="modal fade" id="lihat{{ $lihat->id }}" tabindex="-1" role="dialog" aria-labelledby="modalTitleNotify" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -193,7 +86,6 @@
             </div>
             <div class="modal-body">
                 <center>
-                    {{-- <span class="avatar avatar-xl" style="width:50%;heigt:100px;background-image: url({{ $lihat->user->foto != null ? asset($lihat->user->foto) : asset('./static/biro.png') }})"></span> --}}
                     <img height="auto" width="30%" style="border-radius: 5%" src="{{ $lihat->user->foto != null ? asset($lihat->user->foto) : asset('./static/biro.png') }}" alt="">
                     <br>
                     <a href="{{ url('/pegawai/'.$lihat->id.'/reset') }}" class="btn btn-warning mt-3">
@@ -340,10 +232,10 @@
     </div>
 </div>
 @empty
-@endforelse
+@endforelse --}}
 
 {{-- ! Edit --}}
-@forelse($data as $edit)
+{{-- @forelse($data as $edit)
 <div class="modal fade" id="edit{{ $edit->id }}" tabindex="-1" role="dialog" aria-labelledby="modalTitleNotify" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -396,11 +288,6 @@
                         <input type="text" name="pendidikan" value="{{ $edit->pendidikan }}" required id="" class="form-control">
 
                     </div>
-                    {{-- <div class="mb-2">
-                        <label for="" class="lable">Email</label>
-                        <input type="email" name="email" value="{{ $edit->user->email }}" required id="" class="form-control">
-
-                    </div> --}}
                     <div class="mb-2">
                         <label for="" class="lable">Telp</label>
                         <input type="text" name="hp" value="{{ $edit->hp }}" required id="" class="form-control">
@@ -423,15 +310,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    {{-- @if ($edit->status == 'dosen')
-                    <a href="{{ url('/pegawai/'.$edit->id.'/ubahRole') }}" class="btn btn-yellow">
-                        @if ($edit->user->hasRole('operator'))
-                        Batasi Akses
-                        @else
-                        Berikan Akses Operator
-                        @endif
-                    </a>
-                    @endif --}}
                     <button type="submit" class="btn  btn-primary">Simpan</button>
                 </div>
             </form>
@@ -439,10 +317,10 @@
     </div>
 </div>
 @empty
-@endforelse
+@endforelse --}}
 
 {{-- ! delete --}}
-@forelse($data as $delete)
+{{-- @forelse($data as $delete)
 <div class="modal fade" id="delete{{ $delete->id }}" tabindex="-1" role="dialog" aria-labelledby="modalTitleNotify" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -467,4 +345,4 @@
     </div>
 </div>
 @empty
-@endforelse
+@endforelse --}}

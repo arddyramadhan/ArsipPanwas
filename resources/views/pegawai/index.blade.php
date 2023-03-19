@@ -1,5 +1,5 @@
 @extends('master.dashboard.app')
-@section('judul', 'Manajemen User')
+@section('judul', 'Manajemen Pengguna')
 @section('content')
 @php
 $base = 'pegawai'
@@ -7,19 +7,19 @@ $base = 'pegawai'
 @include('alert_error')
 <div class="mb-2">
     <div class="d-flex justify-content-end">
-        <button class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#dosen">
+        {{-- <button class="btn btn-primary mx-1" data-bs-toggle="modal" data-bs-target="#dosen">
+            <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
+                </path>
+            </svg>
+            Pegawai
+        </button> --}}
+        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#user">
             <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
                 </path>
             </svg>
             Pengguna
-        </button>
-        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#operator">
-            <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
-                </path>
-            </svg>
-            Operator
         </button>
     </div>
 </div>
@@ -111,7 +111,7 @@ $base = 'pegawai'
             </div>
         </div>
     </div>
-    {{-- @include('pegawai.modal') --}}
+    @include('pegawai.modal')
 </div>
 @include('datatable')
 @endsection

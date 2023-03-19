@@ -2,17 +2,19 @@
 @section('judul', 'Surat Keluar')
 @section('content')
 @include('alert_error')
-<div class="pb-2">
-    <div class="d-flex justify-content-end">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNotification">
-            <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
-                </path>
-            </svg>
-            Data Surat Keluar
-        </button>
+@if (Auth::user()->hasRole('operator'))
+    <div class="pb-2">
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNotification">
+                <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
+                    </path>
+                </svg>
+                Data Surat Keluar
+            </button>
+        </div>
     </div>
-</div>
+@endif
 <div>
     <div class="card border-0 shadow mb-4">
         <div class="card-body">
@@ -64,7 +66,7 @@
                     <p class="modal-title" id="modalTitleNotify">Tambah Surat Keluar</p>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ url('/surat_masuk/store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('/surat_keluar/store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-2">
@@ -81,7 +83,8 @@
                         </div>
                         <div class="mb-2">
                             <label for="" class="lable">Isi Surat Keluar</label>
-                            <textarea name="lampiran" id="" class="form-control" cols="30" rows="10"></textarea>
+                            {{-- <textarea name="isi" id="" class="form-control" cols="30" rows="10"></textarea> --}}
+                            <textarea name="isi" id="" cols="30" rows="2" class="mytextarea form-control"></textarea>
                         </div>
                         <div class="mb-2">
                             <label for="" class="lable">Tanggal Surat Keluar</label>
@@ -93,7 +96,7 @@
                         </div>
                         <div class="mb-2">
                             <label for="" class="lable">Tempat Kegiatan</label>
-                            <input type="text" name="kepada" id="" class="form-control">
+                            <input type="text" name="tempat" id="" class="form-control">
                         </div>
                         <div class="mb-2">
                             <label for="" class="lable">Tembusan</label>
@@ -173,3 +176,4 @@ aria-labelledby="modalTitleNotify" aria-hidden="true">
 @endforelse --}}
 </div>
 @endsection
+@include('tinymce')

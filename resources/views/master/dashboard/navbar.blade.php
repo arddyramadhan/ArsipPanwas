@@ -39,31 +39,32 @@
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
                                 </svg>
-
                             </span>
                             <span class="nav-link-title">
                                 Surat Keluar
                             </span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/jenis') }}">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#597e8d" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <line x1="9" y1="6" x2="20" y2="6" />
-                                    <line x1="9" y1="12" x2="20" y2="12" />
-                                    <line x1="9" y1="18" x2="20" y2="18" />
-                                    <line x1="5" y1="6" x2="5" y2="6.01" />
-                                    <line x1="5" y1="12" x2="5" y2="12.01" />
-                                    <line x1="5" y1="18" x2="5" y2="18.01" />
-                                </svg>
-                            </span>
-                            <span class="nav-link-title">
-                                Jenis Dokumen
-                            </span>
-                        </a>
-                    </li>
+                    @if (Auth::user()->hasRole('operator'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/jenis') }}">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#597e8d" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <line x1="9" y1="6" x2="20" y2="6" />
+                                        <line x1="9" y1="12" x2="20" y2="12" />
+                                        <line x1="9" y1="18" x2="20" y2="18" />
+                                        <line x1="5" y1="6" x2="5" y2="6.01" />
+                                        <line x1="5" y1="12" x2="5" y2="12.01" />
+                                        <line x1="5" y1="18" x2="5" y2="18.01" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">
+                                    Jenis Dokumen
+                                </span>
+                            </a>
+                        </li>
+                    @endif
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -90,22 +91,24 @@
                             @endforelse
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/pegawai') }}">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#597e8d" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <circle cx="9" cy="7" r="4" />
-                                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                    <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
-                                </svg>
-                            </span>
-                            <span class="nav-link-title">
-                                Pengguna
-                            </span>
-                        </a>
-                    </li>
+                    @if (Auth::user()->hasRole('operator'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/pegawai') }}">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#597e8d" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <circle cx="9" cy="7" r="4" />
+                                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                        <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">
+                                    Pengguna
+                                </span>
+                            </a>
+                        </li>
+                    @endif
                     {{-- !admin --}}
                     {{-- @if (Auth::user()->hasRole('admin'))
                     <li class="nav-item dropdown">

@@ -55,15 +55,11 @@ class DatabaseSeeder extends Seeder
         // Permission::create(['name' => 'lihat_tim_pengawasan']);
         // Permission::create(['name' => 'kelola_sk_tim']);
         // Permission::create(['name' => 'lihat_sk_tim']);
-
         
-
-
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'admin']);
         $role2 = Role::create(['name' => 'operator']);
         $role3 = Role::create(['name' => 'pengguna']);
-
         // create demo users
         $user = User::create([
             'email' => 'admin@app.id',
@@ -101,7 +97,7 @@ class DatabaseSeeder extends Seeder
             'hp' => '085172345622',
             'user_id' => $user4->id,
         ]);
-        $user3 = User::create([
+        $user3 = User::create([ 
             'email' => 'agung@app.id',
             'username' => 'agung',
             'password' => Hash::make('111')

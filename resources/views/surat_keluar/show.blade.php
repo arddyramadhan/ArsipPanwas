@@ -1,5 +1,5 @@
 @extends('master.dashboard.app')
-@section('judul', 'Detail Surat Masuk')
+@section('judul', 'Detail Surat Keluar')
 @section('content')
 <div>
     <div class="d-flex justify-content-end pb-3">
@@ -11,41 +11,65 @@
         <div class="card-body">
             <table class="table-borderles" width="100%">
                 <tr>
-                    <td>Asal Surat</td>
+                    <td width="20%">Nomor</td>
                     <th>:</th>
-                    <th>{{ $surat_masuk->asal }}</th>
+                    <th>{{ $surat_keluar->nomor }}</th>
                 </tr>
                 <tr>
-                    <td width="12%">Nomor Surat</td>
-                    <th>:</th>
-                    <th>{{ $surat_masuk->nomor }}</th>
+                    <td valign="top">Lampiran</td>
+                    <th valign="top">:</th>
+
+                    <th>{!! $surat_keluar->lampiran !!}</th>
                 </tr>
                 <tr>
-                    <td width="12%">Tanggal Surat</td>
+                    <td>Kepada</td>
                     <th>:</th>
-                    <th>{{ date('d-m-Y', strtotime($surat_masuk->tgl_surat)) }}</th>
+                    <th>{{ $surat_keluar->kepada }}</th>
                 </tr>
                 <tr>
-                    <td width="12%">Deskripsi</td>
+                    <td valign="top">Isi Surat Keluar</td>
+                    <th valign="top">:</th>
+                    <th>{!! $surat_keluar->isi !!}</th>
+                </tr>
+                <tr>
+                    <td>Tanggal Surat Keluar</td>
                     <th>:</th>
-                    <th>{{ $surat_masuk->deskripsi }}</th>
+                    <th>{{$surat_keluar->tgl_surat }}</th>
+                </tr>
+                <tr>
+                    <td>Waktu / Tanggal kegiatan</td>
+                    <th>:</th>
+                    <th>{{$surat_keluar->waktu}}</th>
+                </tr>
+                <tr>
+                    <td>Tempat kegiatan</td>
+                    <th>:</th>
+                    <th>{{  $surat_keluar->tempat  }}</th>
+                </tr>
+                <tr>
+                    <td valign="top">Tembusan</td>
+                    <th valign="top">:</th>
+                    <th>{!! $surat_keluar->tembusan  !!}</th>
                 </tr>
             </table>
         </div>
     </div>
     <div class="card border-0 shadow mb-4">
-        <div class="card-header">
-            <h3>Berkas</h3>
+        <div class="card-header d-flex justify-content-between">
+            <h3>Preview Hasil</h3>
+            <a href="{{ url('surat_keluar/'.$surat_keluar->id.'/print') }}" target="__blank" class="btn btn-warning">
+                Cetak
+            </a>
         </div>
         <div class="card-body">
-            <embed type="application/pdf" src=" {{ asset($surat_masuk->file) }} " width="100%" height="800px">
+            <iframe src="{{ url('surat_keluar/'.$surat_keluar->id.'/print') }}" width="100%" height="900"></iframe>
         </div>
     </div>
 </div>
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="modalTitleNotify" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form action="{{ url('./surat_masuk/'.$surat_masuk->id.'/update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('./surat_keluar/'.$surat_keluar->id.'/update') }}" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
                     <p class="modal-title" id="modalTitleNotify">Ubah Data </p>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -53,30 +77,38 @@
                 <div class="modal-body">
                     @csrf
                     @method('PATCH')
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="" class="lable">Nomor</label>
-                            <input type="text" name="nomor" value="{{ $surat_masuk->nomor }}" id="" class="form-control">
+                    <div class="mb-2">
+                        <label for="" class="lable">Nomor</label>
+                        <input type="text" name="nomor" value="{{ $surat_keluar->nomor }}" id="" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="" class="lable">Lampiran</label>
+                        <textarea name="lampiran" id=""class="form-control" cols="30" rows="3">{{ $surat_keluar->lampiran }}</textarea>
+                    </div>
+                    <div class="mb-2">
+                        <label for="" class="lable">Kepada</label>
+                        <input type="text" value="{{ $surat_keluar->kepada }}" name="kepada" id="" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="" class="lable">Isi Surat Keluar</label>
+                        <textarea name="isi" id="" cols="30" rows="2" class="mytextarea form-control">{{ $surat_keluar->isi }}</textarea>
+                    </div>
+                    <div class="mb-2">
+                        <label for="" class="lable">Tanggal Surat Keluar</label>
+                        <input type="date" value="{{ date('Y-m-d', strtotime($surat_keluar->tgl_surat)) }}" name="tgl_surat" id="" class="form-control">
 
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="lable">Tanggal Surat Masuk</label>
-                            <input type="date" value="{{ date('Y-m-d', strtotime($surat_masuk->tgl_surat)) }}" name="tgl_surat" id="" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="lable">Asal Surat</label>
-                            <input type="text" value="{{ old('asal') ?? $surat_masuk->asal }}" id="asal" name="asal" id="" class="form-control">
-
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="lable">Deskripsi</label>
-                            <textarea name="deskripsi" id="" class="form-control" cols="30" rows="10">{{ $surat_masuk->deskripsi }}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="lable">File</label>
-                            <input type="file" name="file" id="" class="form-control">
-                            <span class="text-sm text-info">info : Kosongkan apabila tidak ingin mengubah file</span>
-                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label for="" class="lable">Waktu dan Tanggal Kegiatan</label>
+                        <input type="datetime-local" value="{{ date('Y-m-d H:i', strtotime($surat_keluar->waktu)) }}" name="waktu" id="" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="" class="lable">Tempat Kegiatan</label>
+                        <input type="text" name="tempat" value="{{ $surat_keluar->tempat }}" id="" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="" class="lable">Tembusan</label>
+                        <textarea name="tembusan" id="" class="form-control" cols="30" rows="3">{{ $surat_keluar->tembusan }}</textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -87,3 +119,4 @@
     </div>
 </div>
 @endsection
+@include('tinymce')

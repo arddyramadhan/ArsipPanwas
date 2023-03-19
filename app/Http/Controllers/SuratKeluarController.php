@@ -29,17 +29,10 @@ class SuratKeluarController extends Controller
             'isi' => 'required',
             'tgl_surat' => 'required',
             'waktu' => 'required',
+            'tempat' => 'required',
             'tembusan' => 'required',
         ]);
-        $surat_keluar = Surat_keluar::create($data);
-        // if ($request->file) {
-        //     $getphoto = $request->file;
-        //     $imageName = rand() . '.' . $getphoto->getClientOriginalExtension();
-        //     $getphoto->move(public_path('file'), $imageName);
-        //     $surat_keluar->update([
-        //         'file' => '/file/' . $imageName,
-        //     ]);
-        // };
+        Surat_keluar::create($data);
         return back();
     }
 
@@ -55,6 +48,12 @@ class SuratKeluarController extends Controller
         return view('surat_keluar.show', compact('nav_jenis', 'surat_keluar'));
     }
 
+    public function print(Surat_keluar $surat_keluar)
+    {
+        // $nav_jenis = $this->nav_jenis;
+        return view('surat_keluar.print', compact('surat_keluar'));
+    }
+
     public function update(Request $request, Surat_keluar $surat_keluar)
     {
         $data = $request->validate([
@@ -64,17 +63,12 @@ class SuratKeluarController extends Controller
             'isi' => 'required',
             'tgl_surat' => 'required',
             'waktu' => 'required',
+            'tempat' => 'required',
             'tembusan' => 'required',
         ]);
+        $data['lampiran'] = nl2br($request->lampiran);
+        $data['tembusan'] = nl2br($request->tembusan);
         $surat_keluar->update($data);
-        // if ($request->file) {
-        //     $getphoto = $request->file;
-        //     $imageName = rand() . '.' . $getphoto->getClientOriginalExtension();
-        //     $getphoto->move(public_path('file'), $imageName);
-        //     $surat_keluar->update([
-        //         'file' => '/file/' . $imageName,
-        //     ]);
-        // };
         return back();
     }
 }
